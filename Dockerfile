@@ -1,9 +1,14 @@
-FROM node:lts-alpine
-
-WORKDIR /myapp
-COPY ["package.json", "package-lock.json*", "./"]
-RUN npm install  && mv node_modules ../
-COPY . .
-EXPOSE 3000
-USER node
+# pull the official base image
+FROM node: alpine
+# set working direction
+WORKDIR /my-app
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
+# install application dependencies
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm i
+# add app
+COPY . ./
+# start app
 CMD ["npm", "start"]
