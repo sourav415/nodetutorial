@@ -10,5 +10,11 @@ pipeline {
         sh 'npm run build'
       }
     }
+    stage('Docker build')
+    {
+        steps{
+            sh 'docker build -t node:1.0 .'
+        }
+    }
   }
 }
