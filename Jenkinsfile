@@ -13,15 +13,10 @@ pipeline {
         sh 'npm run build'
       }
     }
-    stage('Docker build')
-    {
-        steps{
-               tools {docker "docker"}               
-               sh 'docker build -t node:1.0 .' 
-                }
-          
-          }
-
+    stage('Initialize'){
+        def dockerHome = tool 'docker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    }
   
           
         }
