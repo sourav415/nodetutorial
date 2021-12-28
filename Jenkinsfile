@@ -3,6 +3,8 @@ pipeline {
     
     dockerImage = ''
   }
+  tools {docker "docker"}
+
   agent any
   stages {
     stage('Cloning Git') {
