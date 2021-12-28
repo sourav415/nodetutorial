@@ -1,27 +1,21 @@
 pipeline {
-
-  
+  environment {
+    
+    dockerImage = ''
+  }
   agent any
-
-
-  tools {nodejs "nodejs"}
-
   stages {
-    stage('Example') {
+    stage('Cloning Git') {
       steps {
-        sh 'npm install'
-        sh 'npm run build'
+        git 'https://github.com/sourav415/nodetutorial'
       }
     }
-    stage('Initialize'){
-        def dockerHome = tool 'docker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
-      
+    stage('Building image') {
       steps{
-      
+        script {
+          dockerImage = docker.build ":$BUILD_NUMBER"
+        }
       }
     }
-  
-          
- }
+  }
 }
