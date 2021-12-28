@@ -1,6 +1,11 @@
 pipeline {
   
   agent any
+  
+  environment {
+     def dockerHome = tool 'myDocker'
+     env.PATH = "${dockerHome}/bin:${env.PATH}"
+   }
 
   tools {nodejs "nodejs"}
 
