@@ -15,7 +15,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          sh 'docker build -t node:10'
+          sh 'docker build -t node:10 .'
         }
       }
     }
