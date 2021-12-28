@@ -1,7 +1,6 @@
 pipeline {
-  agent {
-        docker { image 'latest' }
-    }
+  
+  agent any
 
   tools {nodejs "nodejs"}
 
