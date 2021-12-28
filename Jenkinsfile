@@ -1,4 +1,5 @@
 pipeline {
+
   
   agent any
 
@@ -15,18 +16,13 @@ pipeline {
     stage('Docker build')
     {
         steps{
-          
-          script{
-            
-          
-               def dockerHome = tool 'docker'
-               env.PATH = "${dockerHome}/bin:${env.PATH}"
+               tools {docker "docker"}               
                sh 'docker build -t node:1.0 .' 
                 }
           
           }
 
-         sh 'docker build -t node:1.0 .'
+  
           
         }
     }
