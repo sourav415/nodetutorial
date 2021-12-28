@@ -19,7 +19,7 @@ pipeline {
           script{
             
           
-               def dockerHome = tool 'myDocker'
+               def dockerHome = tool 'docker'
                env.PATH = "${dockerHome}/bin:${env.PATH}"
                sh 'docker build -t node:1.0 .' 
                 }
