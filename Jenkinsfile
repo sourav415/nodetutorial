@@ -3,7 +3,7 @@ pipeline {
     
     dockerImage = ''
   }
-  tools {docker "mydocker"}
+  tools {Docker "mydocker"}
 
   agent any
   stages {
