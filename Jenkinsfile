@@ -13,7 +13,9 @@ pipeline {
     stage('Docker build')
     {
         steps{
-            sh 'docker build -t node:1.0 .'
+                    def dockerHome = tool 'docker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                    sh 'docker build -t node:1.0 .'
         }
     }
   }
