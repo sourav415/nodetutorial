@@ -17,7 +17,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          sh 'docker build -t node:10 .'
+          sh 'docker build -t souravnandi/nodeapp:latest .'
         }
       }
     }
@@ -27,6 +27,14 @@ pipeline {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
         
         
+      }
+    }
+    
+    stage('image push'){
+      
+      steps{
+         
+        sh 'docker push souravnandi/nodeapp:latest'
       }
     }
   }
