@@ -2,6 +2,8 @@ pipeline {
   environment {
     
     dockerImage = ''
+    DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
+    
   }
   tools {dockerTool "mydocker"}
 
@@ -16,8 +18,15 @@ pipeline {
       steps{
         script {
           sh 'docker build -t node:10 .'
-          sh 'docker run -d -p 8000:8000 --name reactapp node:10'
         }
+      }
+    }
+    stage('dockerhub login'){
+      steps{
+         
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        
+        
       }
     }
   }
