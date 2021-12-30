@@ -1,5 +1,5 @@
 # pull the official base image
-FROM node: alpine
+FROM node
 # set working direction
 WORKDIR /my-app
 # add `/app/node_modules/.bin` to $PATH
