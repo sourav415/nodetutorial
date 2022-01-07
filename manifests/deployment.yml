@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "akssourav-9891"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "akssourav-9891"
+  template:
+    metadata:
+      labels:
+        app: "akssourav-9891"
+    spec:
+      containers:
+        - name: "akssourav-9891"
+          image: "myacs92.azurecr.io/akssourav"
+          ports:
+          - containerPort: 80
